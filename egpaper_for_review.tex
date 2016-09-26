@@ -6,6 +6,7 @@
 \usepackage{graphicx}
 \usepackage{amsmath}
 \usepackage{amssymb}
+\usepackage{subfigure}
 
 % Include other packages here, before hyperref.
 
@@ -52,20 +53,7 @@ Noise modeling and estimation have been two key factors for the success of trand
 
  %%%%%%%%% BODY TEXT
 \section{Introduction}
-Image denoising is a fundermental problem in computer vision and image processing. This problem has been studied for several decades. It is an ideal platform for testing natural image models and an important part of image enhancement for digital image acquisition systems. It also provides high-quality images and better features for other conputer vision tasks such as image registration,  segmentation, and pattern recognition. Over the last decades, most work focus on the removal of additive white Gaussian noise (AWGN) \cite{rudin1992nonlinear,nlm,foe,ksvd,bm3d,lssc,epll,pgpd,wnnm,csf,chen2015learning,burger2012image}. Though being effective at Gaussian noise removal, these methods would possibly fail at other types of noise, especially noise in real images, since noise in real images are much more complex than Gaussian \cite{noiseclinic}. 
-
-
-Besides, these methods lack the ability of noise estimation, which makes them impposible for blind image denoising, without the help of other noise estimation algorithm. 
-
-
-
-Even though they can be adapted for real image denoising with the help of some noise estimation algorithms, these methods do not have the ability to estimate the key parameter of the noise level, which is a key parameter for the performance of image denoising. In order to do real image denoising, these methods require noise estimation as a preprocessing. This make a two-stage framework: a thorough noise estimation method followed by an adapted denoising method. Under this framework, many representative methods achieve good performance in real image denoising \cite{fullyblind,rabie2005robust,Liu2008,almapg,noiseclinic,Zhu_2016_CVPR,crosschannel2016}.
-
-
-In this perspective, blind image denoising, in which the noise and the level are not known for methods is still a challenge problem.
-During the image denoising process, these methods need to know the variance of Gaussian noise, which is a key parameter for Gaussian noise removal, in the testing image.
-
-The two limitations indicate that the real image denoising is still a challenging problem. 
+Image denoising is a fundermental problem in computer vision and image processing. This problem has been studied for several decades. It is an ideal platform for testing natural image models and an important part of image enhancement for digital image acquisition systems. It also provides high-quality images and better features for other conputer vision tasks such as image registration,  segmentation, and pattern recognition. Over the last decades, most work focus on the removal of additive white Gaussian noise (AWGN) \cite{rudin1992nonlinear,nlm,foe,ksvd,bm3d,lssc,epll,pgpd,wnnm,csf,chen2015learning,burger2012image}. Though being effective at Gaussian noise removal, these methods would possibly fail at other types of noise, especially noise in real images, since noise in real images are much more complex than Gaussian \cite{noiseclinic}. Besides, these methods lack the ability of noise estimation and can not perform real image denoising without the help of noise estimation algorithms. In order to do real image denoising, these methods require noise estimation as a preprocessing. This make a two-stage framework: a thorough noise estimation method followed by an adapted denoising method. Under this framework, many representative methods achieve good performance in real image denoising \cite{fullyblind,rabie2005robust,Liu2008,almapg,noiseclinic,Zhu_2016_CVPR,crosschannel2016}.
 
 The noise model in real images are commonly assumed to be Gaussian \cite{fullyblind,rabie2005robust,Liu2008}, mixed Gaussian and Laplacian \cite{almapg}, Mixture of Gaussians \cite{noiseclinic,Zhu_2016_CVPR}, and tensor Gaussian across the RGB channels \cite{crosschannel2016}. Although Gaussian assumption is commonly made in image denoising, it is inflexible for more complex noise in real images, as suggested in \cite{Liu2008,noiseclinic}. However, as pointed out in \cite{crosschannel2016}, the real camera noise is far from being Gaussian, signal dependent, and usually hard to estimate. Although the Mixture of Gaussian model can be used to approximate any continuous distribution \cite{Bishop}, estimating its parameters is time consuming through the commonly employed Expectation-Maximization (EM) algorithm \cite{em} or variational inference technique \cite{Bishop}. On the other hand, the method \cite{almapg} needs tune specific parameters for different types of noise. This makes the proposed method not a strictly real image denoising. Hence, it is still desirable to design an robust and effective model for real image denoising, which bases on few assumptions and can deal with unknown noise without any parameter tuning procedure. The in-camera imaging pipeline includes image demosaicing, white balance and color space transform, gamut mapping, tone mapping, and JPEG comression. Finally, the major noise in the real image can be categorized into five different types: fixed pattern noise, dark current noise, short noise, amlifier noise, and quantization noise \cite{tsin2001statistical}.
 
@@ -121,11 +109,17 @@ This framework doesn't need noise modeling and estimation. However, we still mod
 \emph{F}(f_{1}(\mathbf{A}_{x}),f_{2}(\mathbf{A}_{y}))&
 \\
 +
-\beta_{x}\|\mathbf{A}_{x}\|_{1}
+\beta_{x1}\|\mathbf{A}_{x}\|_{1}
 +
-\beta_{y}\|\mathbf{A}_{y}\|_{1}
+\beta_{x2}\|\mathbf{A}_{x}\|_{F}^{2}
 +
-\gamma_{y}\|\mathbf{V}_{y}\|_{p}^{p}
+\beta_{y1}\|\mathbf{A}_{y}\|_{1}
++
+\beta_{y2}\|\mathbf{A}_{y}\|_{F}^{2}
+&
+\\
+(+
+\gamma_{y}\|\mathbf{V}_{y}\|_{p}^{p})
 \\
 \text{s.t.}
 \quad
@@ -152,11 +146,18 @@ In summary, we propose a Doubly Inversible and Semi-Coupled Dictionary Learing (
 \|\mathbf{U}_{x}^{-1}\mathbf{A}_{x}-\mathbf{U}_{y}^{-1}\mathbf{A}_{y}\|_{F}^{2}&
 \\
 +
-\beta_{x}\|\mathbf{A}_{x}\|_{1}
+\beta_{x1}\|\mathbf{A}_{x}\|_{1}
 +
-\beta_{y}\|\mathbf{A}_{y}\|_{1}
+\beta_{x2}\|\mathbf{A}_{x}\|_{F}^{2}
 +
-\gamma_{y}\|\mathbf{V}_{y}\|_{p}^{p}&
+\beta_{y1}\|\mathbf{A}_{y}\|_{1}
++
+\beta_{y2}\|\mathbf{A}_{y}\|_{F}^{2}
+&
+\\
+(+
+\gamma_{y}\|\mathbf{V}_{y}\|_{p}^{p})
+&
 \\
 +
 \lambda_{x}\|\mathbf{U}_{x}^{-1}\|_{F}^{2}
@@ -185,20 +186,27 @@ While the objective function in (3) is not convex, it is convex with each varibl
 +
 \alpha
 \|\mathbf{U}_{x}^{-1}\mathbf{A}_{x}-\mathbf{U}_{y}^{-1}\mathbf{A}_{y}\|_{F}^{2}
+&
+\\
 +
-\beta_{x}\|\mathbf{A}_{x}\|_{1},
+\beta_{x1}\|\mathbf{A}_{x}\|_{1}
++
+\beta_{x2}\|\mathbf{A}_{x}\|_{F}^{2},
 \end{split}
 \end{equation}
 \begin{equation}
 \begin{split}
 \min_{\mathbf{A}_{y}}
-\|\mathbf{Y}-\mathbf{D}_{y}\mathbf{A}_{y}-\mathbf{V}_{y}\|_{F}^{2}&
+\|\mathbf{Y}-\mathbf{D}_{y}\mathbf{A}_{y}-\mathbf{V}_{y}\|_{F}^{2}
+&
 \\
 +
 \alpha
 \|\mathbf{U}_{x}^{-1}\mathbf{A}_{x}-\mathbf{U}_{y}^{-1}\mathbf{A}_{y}\|_{F}^{2}
 +
-\beta_{y}\|\mathbf{A}_{y}\|_{1}.
+\beta_{y1}\|\mathbf{A}_{y}\|_{1}
++
+\beta_{y2}\|\mathbf{A}_{y}\|_{F}^{2}.
 \end{split}
 \end{equation}
 
@@ -207,7 +215,9 @@ Take $\mathbf{A}_{x}$ as an example, the first and second terms above can be com
 \min_{\mathbf{A}_{x}}
 \|\widetilde{\mathbf{X}}-\widetilde{\mathbf{D}}_{x}\mathbf{A}_{x}\|_{F}^{2}
 +
-\beta_{x}\|\mathbf{A}_{x}\|_{1},
+\beta_{x1}\|\mathbf{A}_{x}\|_{1}
++
+\beta_{x2}\|\mathbf{A}_{x}\|_{F}^{2},
 \end{equation}
 where 
 $
@@ -234,7 +244,9 @@ For $\mathbf{A}_{y}$, it is similar with $\mathbf{A}_{x}$.
 \min_{\mathbf{A}_{y}}
 \|\widetilde{\mathbf{Y}}-\widetilde{\mathbf{D}}_{y}\mathbf{A}_{y}\|_{F}^{2}
 +
-\beta_{y}\|\mathbf{A}_{y}\|_{1},
+\beta_{y1}\|\mathbf{A}_{y}\|_{1}
++
+\beta_{y2}\|\mathbf{A}_{y}\|_{F}^{2},
 \end{equation}
 where 
 $
@@ -299,6 +311,19 @@ This is a ridge regression problem. We can obtain the analytical solution of $\m
 \mathbf{V}_{y} = (\mathbf{Y}-\mathbf{D}_{y}\mathbf{A}_{y})/(1+\gamma_{y}).
 \end{equation}
 
+\subsubsection{Alternate Updating $\mathbf{V}_{y}$}
+The noise matrix is initialized as a zero matirx and updated by solving the following probelm:
+\begin{equation}
+\begin{split}
+\min_{\mathbf{V}_{y}}
+\|\mathbf{Y}-\mathbf{D}_{y}\mathbf{A}_{y}-\mathbf{V}_{y}\|_{F}^{2}
+\end{split}
+\end{equation}
+This is a standard least square problem. We can obtain the analytical solution of $\mathbf{V}_{y}$ by 
+\begin{equation}
+\mathbf{V}_{y} = \mathbf{Y}-\mathbf{D}_{y}\mathbf{A}_{y}.
+\end{equation}
+
 
 
 \subsubsection{Updating $\mathbf{U}_{x}$ and $\mathbf{U}_{y}$}
@@ -348,9 +373,15 @@ The first one is that
 +
 \beta_{x}\|\mathbf{a}_{x,i}\|_{1}
 +
+\beta_{x2}\|\mathbf{a}_{x,i}\|_{2}^{2}
++
 \beta_{y}\|\mathbf{a}_{y,i}\|_{1}
 +
-\gamma_{y}\|\mathbf{v}_{y,i}\|_{1}
+\beta_{y2}\|\mathbf{a}_{y,i}\|_{2}^{2}
+&
+\\
+(+
+\gamma_{y}\|\mathbf{v}_{y,i}\|_{1})
 \end{split}
 \end{equation}
 and finally we get $\widehat{\mathbf{x}}_{i}=\mathbf{D}_{x}\widehat{\mathbf{a}}_{x,i}$.
@@ -365,9 +396,13 @@ The second one is to solve
 \|\mathbf{U}_{x}^{-1}\mathbf{a}_{x,i}-\mathbf{U}_{y}^{-1}\mathbf{a}_{y,i}\|_{2}^{2}&
 \\
 +
-\beta_{y}\|\mathbf{a}_{y,i}\|_{1}
+\beta_{y1}\|\mathbf{a}_{y,i}\|_{1}
 +
-\gamma_{y}\|\mathbf{v}_{y,i}\|_{1}.
+\beta_{y2}\|\mathbf{a}_{y,i}\|_{2}^{2}
+&
+\\
+(+
+\gamma_{y}\|\mathbf{v}_{y,i}\|_{1}).
 \end{split}
 \end{equation}
 Once we get $\widehat{\mathbf{a}}_{y,i}$ from $\mathbf{y}_{i}$, $\widehat{\mathbf{a}}_{x,i}\approx\mathbf{U}_{x}\mathbf{U}_{y}^{-1}\widehat{\mathbf{a}}_{y,i}$ and $\widehat{\mathbf{x}_{i}}\approx\mathbf{D}_{x}\widehat{\mathbf{a}}_{x,i}$.
@@ -403,10 +438,848 @@ We compare with popular software NeatImage which is one of the best denoising so
 We don't fine tune the parameters both in the training and testing datasets.
 
 \subsection{Real Image Denoising}
+We compare the proposed method with the famous BM3D \cite{bm3d} and WNNM \cite{wnnm}, Cascade of Shrinkage Fields (CSF) \cite{csf}, trainable reaction diffusion (TRD) \cite{chen2015learning}, plain neural network based method MLP \cite{burger2012image}, the blind image denoising method Noise Clinic \cite{noiseclinic}, and the commercial software Neat Image. The RGB images are firstly transformed into YCbCr channels and restored by these methods. Then the denoised RGB image is obtained by transforming the restored YCbCr image back.
+\begin{figure*}
+\centering
+\subfigure{
+\begin{minipage}[t]{0.244\textwidth}
+\centering
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/br_singer.png}}
+{\footnotesize (a) Real Noisy Image}
+\end{minipage}
+\begin{minipage}[t]{0.244\textwidth}
+\centering
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/br_BM3D_singer.png}}
+{\footnotesize (b) BM3D}
+\end{minipage}
+\begin{minipage}[t]{0.244\textwidth}
+\centering
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/br_WNNM_singer.png}}
+{\footnotesize (c) WNNM}
+\end{minipage}
+\begin{minipage}[t]{0.244\textwidth}
+\centering
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/br_TRD_singer.png}}
+{\footnotesize (d) TRD}
+\end{minipage}
+}
+\subfigure{
+\begin{minipage}[t]{0.244\textwidth}
+\centering
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/br_MLP_singer.png}}
+{\footnotesize (e) MLP}
+\end{minipage}
+\begin{minipage}[t]{0.244\textwidth}
+\centering
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/br_NC_singer.png}}
+{\footnotesize (f) Noise Clinic}
+\end{minipage}
+\begin{minipage}[t]{0.244\textwidth}
+\centering
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/br_NI_singer.png}}
+{\footnotesize (g) Neat Image}
+\end{minipage}
+\begin{minipage}[t]{0.244\textwidth}
+\centering
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/br_DSCDL_singer.png}}
+{\footnotesize (h) Ours }
+\end{minipage}
+}
+\caption{Denoised images of the old image "Singer" by different methods. The images are better to be zoomed in on screen.}
+\label{fig1}
+\end{figure*}
 
+\begin{figure*}
+\centering
+\subfigure{
+\begin{minipage}[t]{0.244\textwidth}
+\centering
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/br_palace.png}}
+{\footnotesize (a) Real Noisy Image}
+\end{minipage}
+\begin{minipage}[t]{0.244\textwidth}
+\centering
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/br_BM3D_palace.png}}
+{\footnotesize (b) BM3D}
+\end{minipage}
+\begin{minipage}[t]{0.244\textwidth}
+\centering
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/br_WNNM_palace.png}}
+{\footnotesize (c) WNNM}
+\end{minipage}
+\begin{minipage}[t]{0.244\textwidth}
+\centering
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/br_TRD_palace.png}}
+{\footnotesize (d) TRD}
+\end{minipage}
+}
+\subfigure{
+\begin{minipage}[t]{0.244\textwidth}
+\centering
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/br_MLP_palace.png}}
+{\footnotesize (e) MLP}
+\end{minipage}
+\begin{minipage}[t]{0.244\textwidth}
+\centering
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/br_NC_palace.png}}
+{\footnotesize (f) Noise Clinic}
+\end{minipage}
+\begin{minipage}[t]{0.244\textwidth}
+\centering
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/br_NI_palace.png}}
+{\footnotesize (g) Neat Image}
+\end{minipage}
+\begin{minipage}[t]{0.244\textwidth}
+\centering
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/br_DSCDL_palace.png}}
+{\footnotesize (h) Ours }
+\end{minipage}
+}
+\caption{Denoised images of the old image "Palace" by different methods. The images are better to be zoomed in on screen.}
+\label{fig2}
+\end{figure*}
 
 \subsection{Comparison on Dataset with GroundTruth}
+We evaluate the competing denoising methods from various research directions on two datasets. Both the two datasets comes from the \cite{crosschannel2016}. The first contains 3 cropped images of size $512\times512$. The other dataset contains 42 images cropped to size of $500\times500$ from the 17 images provided in \cite{crosschannel2016}. The 60 images contain most of the scenes in the 17 images \cite{crosschannel2016}.
+\begin{table*}
+\caption{Average PSNR(dB) results of different methods on 3 real noisy images captured by Canon EOS 5D mark3 at ISO3200 in \cite{crosschannel2016}.}
+\label{tab1}
+\begin{center}
+\renewcommand\arraystretch{1}
+\begin{tabular}{|c||c|c|c|c|c|c|c|c|c|c|}
+\hline
+Image & \textbf{Noisy} &\textbf{BM3D}&\textbf{WNNM}&\textbf{CSF}&\textbf{TRD}&\textbf{MLP}& \textbf{Noise Clinic}& \textbf{Neat Image}&\textbf{Ours}
+\\
+\hline
+1& 37.00 & 37.08 & 37.09 &  37.46  &  37.51  &  32.91  & \textbf{ 38.76}  & 37.68   & 38.63  
+\\
+\hline
+2& 33.88 & 33.95  &  33.95  &  34.90  &  35.04  & 31.94   &  35.69  &  34.87  & \textbf{ 35.96 }
+\\
+\hline
+3& 33.83  & 33.85  & 33.85   & 34.15   &   34.07 & 30.89   & \textbf{35.54 }  &  34.77  &  35.51 
+\\
+\hline
+Average & 34.90  &  34.96 &  34.96  & 35.50   & 35.54   &  31.91  &  36.67  &  35.77  &  \textbf{ 36.70}
+\\
+\hline
+\end{tabular}
+\end{center}
+\end{table*}
 
+\begin{table*}
+\caption{Average SSIM results of different methods on 3 real noisy images captured by Canon EOS 5D mark3 at ISO3200 in \cite{crosschannel2016}.}
+\label{tab1}
+\begin{center}
+\renewcommand\arraystretch{1}
+\begin{tabular}{|c||c|c|c|c|c|c|c|c|c|c|}
+\hline
+Image & \textbf{Noisy} &\textbf{BM3D}&\textbf{WNNM}&\textbf{CSF}&\textbf{TRD}&\textbf{MLP}& \textbf{Noise Clinic}& \textbf{Neat Image}&\textbf{Ours}
+\\
+\hline
+1& 0.9345 & 0.9368  & 0.9372  & 0.9599   &  0.9607  & 0.9043   &  0.9689  & 0.9600   &\textbf{ 0.9712  }
+\\
+\hline
+2& 0.8919 &  0.8848 &  0.8951 & 0.9159   &  0.9187  &  0.8498  &  0.9427  &  0.9308  & \textbf{ 0.9434 }
+\\
+\hline
+3& 0.9128  & 0.9136 & 0.9136  & 0.9254   &  0.9279  &  0.8635  &  0.9476  & 0.9463   & \textbf{ 0.9529 }
+\\
+\hline
+Average &  0.9131  & 0.9117 &  0.9153 & 0.9337   & 0.9358   &  0.8725  & 0.9531   & 0.9457   &  \textbf{0.9558} 
+\\
+\hline
+\end{tabular}
+\end{center}
+\end{table*}
+
+
+
+\begin{figure*}
+\centering
+\subfigure{
+\begin{minipage}[t]{0.2\textwidth}
+\centering
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/br_Noisy_5dmark3_iso3200_1.png}}
+{\footnotesize (a) Real Noisy Image}
+\end{minipage}
+\begin{minipage}[t]{0.2\textwidth}
+\centering
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/br_BM3D_5dmark3_iso3200_1.png}}
+{\footnotesize (b) BM3D}
+\end{minipage}
+\begin{minipage}[t]{0.2\textwidth}
+\centering
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/br_WNNM_5dmark3_iso3200_1.png}}
+{\footnotesize (c) WNNM}
+\end{minipage}
+\begin{minipage}[t]{0.2\textwidth}
+\centering
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/br_CSF_5dmark3_iso3200_1.png}}
+{\footnotesize (d) CSF}
+\end{minipage}
+\begin{minipage}[t]{0.2\textwidth}
+\centering
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/br_TRD_5dmark3_iso3200_1.png}}
+{\footnotesize (e) TRD}
+\end{minipage}
+}
+\subfigure{
+\begin{minipage}[t]{0.2\textwidth}
+\centering
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/br_MLP_5dmark3_iso3200_1.png}}
+{\footnotesize (f) MLP}
+\end{minipage}
+\begin{minipage}[t]{0.2\textwidth}
+\centering
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/br_NC_5dmark3_iso3200_1.png}}
+{\footnotesize (g) Noise Clinic}
+\end{minipage}
+\begin{minipage}[t]{0.2\textwidth}
+\centering
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/br_NI_5dmark3_iso3200_1.png}}
+{\footnotesize (h) Neat Image}
+\end{minipage}
+\begin{minipage}[t]{0.2\textwidth}
+\centering
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/br_DSCDL_5dmark3_iso3200_1.png}}
+{\footnotesize (i) Ours }
+\end{minipage}
+\begin{minipage}[t]{0.2\textwidth}
+\centering
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/br_Mean_5dmark3_iso3200_1.png}}
+{\footnotesize (j) Mean Image }
+\end{minipage}
+}
+\caption{Denoised images of the old image "$5dmark3_iso3200_1$" by different methods. The images are better to be zoomed in on screen.}
+\label{fig2}
+\end{figure*}
+
+\begin{figure*}
+\centering
+\subfigure{
+\begin{minipage}[t]{0.2\textwidth}
+\centering
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/br_Noisy_5dmark3_iso3200_2.png}}
+{\footnotesize (a) Real Noisy Image}
+\end{minipage}
+\begin{minipage}[t]{0.2\textwidth}
+\centering
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/br_BM3D_5dmark3_iso3200_2.png}}
+{\footnotesize (b) BM3D}
+\end{minipage}
+\begin{minipage}[t]{0.2\textwidth}
+\centering
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/br_WNNM_5dmark3_iso3200_2.png}}
+{\footnotesize (c) WNNM}
+\end{minipage}
+\begin{minipage}[t]{0.2\textwidth}
+\centering
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/br_CSF_5dmark3_iso3200_2.png}}
+{\footnotesize (d) CSF}
+\end{minipage}
+\begin{minipage}[t]{0.2\textwidth}
+\centering
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/br_TRD_5dmark3_iso3200_2.png}}
+{\footnotesize (e) TRD}
+\end{minipage}
+}
+\subfigure{
+\begin{minipage}[t]{0.2\textwidth}
+\centering
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/br_MLP_5dmark3_iso3200_2.png}}
+{\footnotesize (f) MLP}
+\end{minipage}
+\begin{minipage}[t]{0.2\textwidth}
+\centering
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/br_NC_5dmark3_iso3200_2.png}}
+{\footnotesize (g) Noise Clinic}
+\end{minipage}
+\begin{minipage}[t]{0.2\textwidth}
+\centering
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/br_NI_5dmark3_iso3200_2.png}}
+{\footnotesize (h) Neat Image}
+\end{minipage}
+\begin{minipage}[t]{0.2\textwidth}
+\centering
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/br_DSCDL_5dmark3_iso3200_2.png}}
+{\footnotesize (i) Ours }
+\end{minipage}
+\begin{minipage}[t]{0.2\textwidth}
+\centering
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/br_Mean_5dmark3_iso3200_2.png}}
+{\footnotesize (j) Mean Image }
+\end{minipage}
+}
+\caption{Denoised images of the old image "$5dmark3_iso3200_2$" by different methods. The images are better to be zoomed in on screen.}
+\label{fig2}
+\end{figure*}
+
+
+\begin{figure*}
+\centering
+\subfigure{
+\begin{minipage}[t]{0.2\textwidth}
+\centering
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/br_Noisy_5dmark3_iso3200_3.png}}
+{\footnotesize (a) Real Noisy Image}
+\end{minipage}
+\begin{minipage}[t]{0.2\textwidth}
+\centering
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/br_BM3D_5dmark3_iso3200_3.png}}
+{\footnotesize (b) BM3D}
+\end{minipage}
+\begin{minipage}[t]{0.2\textwidth}
+\centering
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/br_WNNM_5dmark3_iso3200_3.png}}
+{\footnotesize (c) WNNM}
+\end{minipage}
+\begin{minipage}[t]{0.2\textwidth}
+\centering
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/br_CSF_5dmark3_iso3200_3.png}}
+{\footnotesize (d) CSF}
+\end{minipage}
+\begin{minipage}[t]{0.2\textwidth}
+\centering
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/br_TRD_5dmark3_iso3200_3.png}}
+{\footnotesize (e) TRD}
+\end{minipage}
+}
+\subfigure{
+\begin{minipage}[t]{0.2\textwidth}
+\centering
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/br_MLP_5dmark3_iso3200_3.png}}
+{\footnotesize (f) MLP}
+\end{minipage}
+\begin{minipage}[t]{0.2\textwidth}
+\centering
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/br_NC_5dmark3_iso3200_3.png}}
+{\footnotesize (g) Noise Clinic}
+\end{minipage}
+\begin{minipage}[t]{0.2\textwidth}
+\centering
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/br_NI_5dmark3_iso3200_3.png}}
+{\footnotesize (h) Neat Image}
+\end{minipage}
+\begin{minipage}[t]{0.2\textwidth}
+\centering
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/br_DSCDL_5dmark3_iso3200_3.png}}
+{\footnotesize (i) Ours }
+\end{minipage}
+\begin{minipage}[t]{0.2\textwidth}
+\centering
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/br_Mean_5dmark3_iso3200_3.png}}
+{\footnotesize (j) Mean Image }
+\end{minipage}
+}
+\caption{Denoised images of the old image "$5dmark3_iso3200_3$" by different methods. The images are better to be zoomed in on screen.}
+\label{fig2}
+\end{figure*}
+
+
+
+\begin{table*}
+\caption{Average PSNR(dB) and SSIM results of different methods on 42 cropped images from 17 real noisy images in \cite{crosschannel2016}.}
+\label{tab1}
+\begin{center}
+\renewcommand\arraystretch{1}
+\begin{tabular}{|c||c|c|c|c|c|c|c|c|c|c|}
+\hline
+Measure & \textbf{Noisy} &\textbf{BM3D}&\textbf{WNNM}&\textbf{CSF}&\textbf{TRD}&\textbf{MLP}& \textbf{Noise Clinic}& \textbf{Neat Image}&\textbf{Ours}
+\\
+\hline
+PSNR& 34.36 & 34.36 & 34.40 & 36.11 & 36.05 & 34.41 & 37.68 & 36.58 & 36.15
+\\
+\hline
+SSIM& 0.8552 & 0.8553 & 0.8577 & 0.9215 & 0.9211 & 0.9012 & 0.9470 & 0.9145 & 0.9236
+\\
+\hline
+\end{tabular}
+\end{center}
+\end{table*}
+
+
+\begin{figure*}
+\centering
+\subfigure{
+\begin{minipage}[t]{0.2\textwidth}
+\centering
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/br_Noisy_CC_Noisy_Nikon_D600_ISO_3200_C3_77.png}}
+{\footnotesize (a) Noisy Image \\ (35.93dB/0.8826)}
+\end{minipage}
+\begin{minipage}[t]{0.2\textwidth}
+\centering
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/br_BM3D_CC_Noisy_Nikon_D600_ISO_3200_C3_77.png}}
+{\footnotesize (b) BM3D  \\ (35.73dB/0.8838)}
+\end{minipage}
+\begin{minipage}[t]{0.2\textwidth}
+\centering
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/br_WNNM_CC_Noisy_Nikon_D600_ISO_3200_C3_77.png}}
+{\footnotesize (c) WNNM \\(36.06dB/0.8884)}
+\end{minipage}
+\begin{minipage}[t]{0.2\textwidth}
+\centering
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/br_CSF_CC_Noisy_Nikon_D600_ISO_3200_C3_77.png}}
+{\footnotesize (d) CSF \\ (37.81dB/0.9445)}
+\end{minipage}
+\begin{minipage}[t]{0.2\textwidth}
+\centering
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/br_TRD_CC_Noisy_Nikon_D600_ISO_3200_C3_77.png}}
+{\footnotesize (e) TRD \\ (37.89dB/0.9452)}
+\end{minipage}
+}
+\subfigure{
+\begin{minipage}[t]{0.2\textwidth}
+\centering
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/br_MLP_CC_Noisy_Nikon_D600_ISO_3200_C3_77.png}}
+{\footnotesize (f) MLP \\ (36.28dB/0.8985)}
+\end{minipage}
+\begin{minipage}[t]{0.2\textwidth}
+\centering
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/br_NC_CC_Noisy_Nikon_D600_ISO_3200_C3_77.png}}
+{\footnotesize (g) Noise Clinic \\ (39.67dB/0.9640)}
+\end{minipage}
+\begin{minipage}[t]{0.2\textwidth}
+\centering
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/br_NI_CC_Noisy_Nikon_D600_ISO_3200_C3_77.png}}
+{\footnotesize (h) Neat Image \\ (39.27dB/0.9618)}
+\end{minipage}
+\begin{minipage}[t]{0.2\textwidth}
+\centering
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/br_DSCDL_CC_Noisy_Nikon_D600_ISO_3200_C3_77.png}}
+{\footnotesize (i) Ours \\ (37.85dB/0.9447)}
+\end{minipage}
+\begin{minipage}[t]{0.2\textwidth}
+\centering
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/br_Mean_CC_Noisy_Nikon_D600_ISO_3200_C3_77.png}}
+{\footnotesize (j) Mean Image }
+\end{minipage}
+}
+\caption{Denoised images of the old image "$Nikon_D600_ISO_3200_C3_77$" by different methods. The images are better to be zoomed in on screen.}
+\label{fig2}
+\end{figure*}
+
+\begin{figure*}
+\centering
+\subfigure{
+\begin{minipage}[t]{0.2\textwidth}
+\centering
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/br_Noisy_CC_Noisy_Canon_EOS_5D_Mark3_ISO_3200_C3_26.png}}
+{\footnotesize (a) Noisy Image \\ (37.54dB/0.9059) }
+\end{minipage}
+\begin{minipage}[t]{0.2\textwidth}
+\centering
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/br_BM3D_CC_Noisy_Canon_EOS_5D_Mark3_ISO_3200_C3_26.png}}
+{\footnotesize (b) BM3D  \\  (37.54dB/0.9059)  }
+\end{minipage}
+\begin{minipage}[t]{0.2\textwidth}
+\centering
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/br_WNNM_CC_Noisy_Canon_EOS_5D_Mark3_ISO_3200_C3_26.png}}
+{\footnotesize (c) WNNM \\ (37.56dB/0.9071) }
+\end{minipage}
+\begin{minipage}[t]{0.2\textwidth}
+\centering
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/br_CSF_CC_Noisy_Canon_EOS_5D_Mark3_ISO_3200_C3_26.png}}
+{\footnotesize (d) CSF \\ (37.76dB/0.9178) }
+\end{minipage}
+\begin{minipage}[t]{0.2\textwidth}
+\centering
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/br_TRD_CC_Noisy_Canon_EOS_5D_Mark3_ISO_3200_C3_26.png}}
+{\footnotesize (e) TRD \\ (37.85dB/0.9216) }
+\end{minipage}
+}
+\subfigure{
+\begin{minipage}[t]{0.2\textwidth}
+\centering
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/br_MLP_CC_Noisy_Canon_EOS_5D_Mark3_ISO_3200_C3_26.png}}
+{\footnotesize (f) MLP \\ (35.06dB/0.8601) }
+\end{minipage}
+\begin{minipage}[t]{0.2\textwidth}
+\centering
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/br_NC_CC_Noisy_Canon_EOS_5D_Mark3_ISO_3200_C3_26.png}}
+{\footnotesize (g) Noise Clinic \\ (40.48dB/0.9497) }
+\end{minipage}
+\begin{minipage}[t]{0.2\textwidth}
+\centering
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/br_NI_CC_Noisy_Canon_EOS_5D_Mark3_ISO_3200_C3_26.png}}
+{\footnotesize (h) Neat Image \\ (39.11dB/0.9437)}
+\end{minipage}
+\begin{minipage}[t]{0.2\textwidth}
+\centering
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/br_DSCDL_CC_Noisy_Canon_EOS_5D_Mark3_ISO_3200_C3_26.png}}
+{\footnotesize (i) Ours \\ (38.82dB/0.9444) }
+\end{minipage}
+\begin{minipage}[t]{0.2\textwidth}
+\centering
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/br_Mean_CC_Noisy_Canon_EOS_5D_Mark3_ISO_3200_C3_26.png}}
+{\footnotesize (j) Mean Image }
+\end{minipage}
+}
+\caption{Denoised images of the old image "$Canon_EOS_5D_Mark3_ISO_3200_C3_26$" by different methods. The images are better to be zoomed in on screen.}
+\label{fig2}
+\end{figure*}
+
+\begin{figure*}
+\centering
+\subfigure{
+\begin{minipage}[t]{0.2\textwidth}
+\centering
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/br_Noisy_CC_Noisy_Nikon_D800_ISO_3200_A1_13.png}}
+{\footnotesize (a) Noisy Image \\ (35.97dB/0.8064) }
+\end{minipage}
+\begin{minipage}[t]{0.2\textwidth}
+\centering
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/br_BM3D_CC_Noisy_Nikon_D800_ISO_3200_A1_13.png}}
+{\footnotesize (b) BM3D  \\  (35.97dB/0.8064)   }
+\end{minipage}
+\begin{minipage}[t]{0.2\textwidth}
+\centering
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/br_WNNM_CC_Noisy_Nikon_D800_ISO_3200_A1_13.png}}
+{\footnotesize (c) WNNM \\ (35.98dB/0.8074)  }
+\end{minipage}
+\begin{minipage}[t]{0.2\textwidth}
+\centering
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/br_CSF_CC_Noisy_Nikon_D800_ISO_3200_A1_13.png}}
+{\footnotesize (d) CSF \\ (38.08dB/0.9014)}
+\end{minipage}
+\begin{minipage}[t]{0.2\textwidth}
+\centering
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/br_TRD_CC_Noisy_Nikon_D800_ISO_3200_A1_13.png}}
+{\footnotesize (e) TRD \\ (37.95dB/0.9003)  }
+\end{minipage}
+}
+\subfigure{
+\begin{minipage}[t]{0.2\textwidth}
+\centering
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/br_MLP_CC_Noisy_Nikon_D800_ISO_3200_A1_13.png}}
+{\footnotesize (f) MLP \\ (37.99dB/0.8849)  }
+\end{minipage}
+\begin{minipage}[t]{0.2\textwidth}
+\centering
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/br_NC_CC_Noisy_Nikon_D800_ISO_3200_A1_13.png}}
+{\footnotesize (g) Noise Clinic \\ (40.34dB/0.9271)  }
+\end{minipage}
+\begin{minipage}[t]{0.2\textwidth}
+\centering
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/br_NI_CC_Noisy_Nikon_D800_ISO_3200_A1_13.png}}
+{\footnotesize (h) Neat Image \\ (37.76dB/0.8717) }
+\end{minipage}
+\begin{minipage}[t]{0.2\textwidth}
+\centering
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/br_DSCDL_CC_Noisy_Nikon_D800_ISO_3200_A1_13.png}}
+{\footnotesize (i) Ours \\ (37.95dB/0.8996)  }
+\end{minipage}
+\begin{minipage}[t]{0.2\textwidth}
+\centering
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/br_Mean_CC_Noisy_Nikon_D800_ISO_3200_A1_13.png}}
+{\footnotesize (j) Mean Image }
+\end{minipage}
+}
+\caption{Denoised images of the old image "$Nikon_D800_ISO_3200_A1_13$" by different methods. The images are better to be zoomed in on screen.}
+\label{fig2}
+\end{figure*}
+
+\begin{figure*}
+\centering
+\subfigure{
+\begin{minipage}[t]{0.2\textwidth}
+\centering
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/br_Noisy_CC_Noisy_Nikon_D800_ISO_3200_A1_130.png}}
+{\footnotesize (a) Noisy Image \\ (35.02dB/0.7275)  }
+\end{minipage}
+\begin{minipage}[t]{0.2\textwidth}
+\centering
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/br_BM3D_CC_Noisy_Nikon_D800_ISO_3200_A1_130.png}}
+{\footnotesize (b) BM3D  \\  (35.02dB/0.7275)    }
+\end{minipage}
+\begin{minipage}[t]{0.2\textwidth}
+\centering
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/br_WNNM_CC_Noisy_Nikon_D800_ISO_3200_A1_130.png}}
+{\footnotesize (c) WNNM \\ (35.03dB/0.7284)   }
+\end{minipage}
+\begin{minipage}[t]{0.2\textwidth}
+\centering
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/br_CSF_CC_Noisy_Nikon_D800_ISO_3200_A1_130.png}}
+{\footnotesize (d) CSF \\ (37.13dB/0.8642)}
+\end{minipage}
+\begin{minipage}[t]{0.2\textwidth}
+\centering
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/br_TRD_CC_Noisy_Nikon_D800_ISO_3200_A1_130.png}}
+{\footnotesize (e) TRD \\ (37.13dB/0.8646)   }
+\end{minipage}
+}
+\subfigure{
+\begin{minipage}[t]{0.2\textwidth}
+\centering
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/br_MLP_CC_Noisy_Nikon_D800_ISO_3200_A1_130.png}}
+{\footnotesize (f) MLP \\ (36.85dB/0.8468)  }
+\end{minipage}
+\begin{minipage}[t]{0.2\textwidth}
+\centering
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/br_NC_CC_Noisy_Nikon_D800_ISO_3200_A1_130.png}}
+{\footnotesize (g) Noise Clinic \\ (40.61dB/0.9056)  }
+\end{minipage}
+\begin{minipage}[t]{0.2\textwidth}
+\centering
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/br_NI_CC_Noisy_Nikon_D800_ISO_3200_A1_130.png}}
+{\footnotesize (h) Neat Image \\ (36.78dB/0.8095)  }
+\end{minipage}
+\begin{minipage}[t]{0.2\textwidth}
+\centering
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/br_DSCDL_CC_Noisy_Nikon_D800_ISO_3200_A1_130.png}}
+{\footnotesize (i) Ours \\  (37.49dB/0.8704)   }
+\end{minipage}
+\begin{minipage}[t]{0.2\textwidth}
+\centering
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/br_Mean_CC_Noisy_Nikon_D800_ISO_3200_A1_130.png}}
+{\footnotesize (j) Mean Image }
+\end{minipage}
+}
+\caption{Denoised images of the old image "$Nikon_D800_ISO_3200_A1_130$" by different methods. The images are better to be zoomed in on screen.}
+\label{fig2}
+\end{figure*}
+
+\begin{figure*}
+\centering
+\subfigure{
+\begin{minipage}[t]{0.2\textwidth}
+\centering
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/br_Noisy_CC_Noisy_Nikon_D800_ISO_3200_A1_21.png}}
+{\footnotesize (a) Noisy Image \\ (35.36dB/0.7573)   }
+\end{minipage}
+\begin{minipage}[t]{0.2\textwidth}
+\centering
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/br_BM3D_CC_Noisy_Nikon_D800_ISO_3200_A1_21.png}}
+{\footnotesize (b) BM3D  \\  (35.36dB/0.7573)    }
+\end{minipage}
+\begin{minipage}[t]{0.2\textwidth}
+\centering
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/br_WNNM_CC_Noisy_Nikon_D800_ISO_3200_A1_21.png}}
+{\footnotesize (c) WNNM \\ (35.36dB/0.7573)   }
+\end{minipage}
+\begin{minipage}[t]{0.2\textwidth}
+\centering
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/br_CSF_CC_Noisy_Nikon_D800_ISO_3200_A1_21.png}}
+{\footnotesize (d) CSF \\ (36.78dB/0.8375)}
+\end{minipage}
+\begin{minipage}[t]{0.2\textwidth}
+\centering
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/br_TRD_CC_Noisy_Nikon_D800_ISO_3200_A1_21.png}}
+{\footnotesize (e) TRD \\ (36.91dB/0.8417)    }
+\end{minipage}
+}
+\subfigure{
+\begin{minipage}[t]{0.2\textwidth}
+\centering
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/br_MLP_CC_Noisy_Nikon_D800_ISO_3200_A1_21.png}}
+{\footnotesize (f) MLP \\ (36.01dB/0.7894)   }
+\end{minipage}
+\begin{minipage}[t]{0.2\textwidth}
+\centering
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/br_NC_CC_Noisy_Nikon_D800_ISO_3200_A1_21.png}}
+{\footnotesize (g) Noise Clinic \\ (40.42dB/0.9083)   }
+\end{minipage}
+\begin{minipage}[t]{0.2\textwidth}
+\centering
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/br_NI_CC_Noisy_Nikon_D800_ISO_3200_A1_21.png}}
+{\footnotesize (h) Neat Image \\ (35.92dB/0.7880) }
+\end{minipage}
+\begin{minipage}[t]{0.2\textwidth}
+\centering
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/br_DSCDL_CC_Noisy_Nikon_D800_ISO_3200_A1_21.png}}
+{\footnotesize (i) Ours \\  (37.09dB/0.8494)    }
+\end{minipage}
+\begin{minipage}[t]{0.2\textwidth}
+\centering
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/br_Mean_CC_Noisy_Nikon_D800_ISO_3200_A1_21.png}}
+{\footnotesize (j) Mean Image }
+\end{minipage}
+}
+\caption{Denoised images of the old image "$Nikon_D800_ISO_3200_A1_21$" by different methods. The images are better to be zoomed in on screen.}
+\label{fig2}
+\end{figure*}
+
+
+\begin{figure*}
+\centering
+\subfigure{
+\begin{minipage}[t]{0.2\textwidth}
+\centering
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/br_Noisy_CC_Noisy_Nikon_D800_ISO_3200_A1_23.png}}
+{\footnotesize (a) Noisy Image \\ (36.12dB/0.8545)   }
+\end{minipage}
+\begin{minipage}[t]{0.2\textwidth}
+\centering
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/br_BM3D_CC_Noisy_Nikon_D800_ISO_3200_A1_23.png}}
+{\footnotesize (b) BM3D  \\  (36.12dB/0.8545)     }
+\end{minipage}
+\begin{minipage}[t]{0.2\textwidth}
+\centering
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/br_WNNM_CC_Noisy_Nikon_D800_ISO_3200_A1_23.png}}
+{\footnotesize (c) WNNM \\ (36.14dB/0.8562)    }
+\end{minipage}
+\begin{minipage}[t]{0.2\textwidth}
+\centering
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/br_CSF_CC_Noisy_Nikon_D800_ISO_3200_A1_23.png}}
+{\footnotesize (d) CSF \\  (37.20dB/0.8958) }
+\end{minipage}
+\begin{minipage}[t]{0.2\textwidth}
+\centering
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/br_TRD_CC_Noisy_Nikon_D800_ISO_3200_A1_23.png}}
+{\footnotesize (e) TRD \\ (37.17dB/0.8910)     }
+\end{minipage}
+}
+\subfigure{
+\begin{minipage}[t]{0.2\textwidth}
+\centering
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/br_MLP_CC_Noisy_Nikon_D800_ISO_3200_A1_23.png}}
+{\footnotesize (f) MLP \\ (36.81dB/0.8623)   }
+\end{minipage}
+\begin{minipage}[t]{0.2\textwidth}
+\centering
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/br_NC_CC_Noisy_Nikon_D800_ISO_3200_A1_23.png}}
+{\footnotesize (g) Noise Clinic \\ (39.27dB/0.9298)   }
+\end{minipage}
+\begin{minipage}[t]{0.2\textwidth}
+\centering
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/br_NI_CC_Noisy_Nikon_D800_ISO_3200_A1_23.png}}
+{\footnotesize (h) Neat Image \\  (37.13dB/0.8932)  }
+\end{minipage}
+\begin{minipage}[t]{0.2\textwidth}
+\centering
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/br_DSCDL_CC_Noisy_Nikon_D800_ISO_3200_A1_23.png}}
+{\footnotesize (i) Ours \\  (37.30dB/0.9006)   }
+\end{minipage}
+\begin{minipage}[t]{0.2\textwidth}
+\centering
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/br_Mean_CC_Noisy_Nikon_D800_ISO_3200_A1_23.png}}
+{\footnotesize (j) Mean Image }
+\end{minipage}
+}
+\caption{Denoised images of the old image "$Nikon_D800_ISO_3200_A1_23$" by different methods. The images are better to be zoomed in on screen.}
+\label{fig2}
+\end{figure*}
+
+
+\begin{figure*}
+\centering
+\subfigure{
+\begin{minipage}[t]{0.2\textwidth}
+\centering
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/br_Noisy_CC_Noisy_Nikon_D800_ISO_3200_A2_99.png}}
+{\footnotesize (a) Noisy Image \\ (36.21dB/0.8342)    }
+\end{minipage}
+\begin{minipage}[t]{0.2\textwidth}
+\centering
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/br_BM3D_CC_Noisy_Nikon_D800_ISO_3200_A2_99.png}}
+{\footnotesize (b) BM3D  \\  (36.21dB/0.8342)     }
+\end{minipage}
+\begin{minipage}[t]{0.2\textwidth}
+\centering
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/br_WNNM_CC_Noisy_Nikon_D800_ISO_3200_A2_99.png}}
+{\footnotesize (c) WNNM \\ (36.21dB/0.8342)    }
+\end{minipage}
+\begin{minipage}[t]{0.2\textwidth}
+\centering
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/br_CSF_CC_Noisy_Nikon_D800_ISO_3200_A2_99.png}}
+{\footnotesize (d) CSF \\  (38.04dB/0.9181)  }
+\end{minipage}
+\begin{minipage}[t]{0.2\textwidth}
+\centering
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/br_TRD_CC_Noisy_Nikon_D800_ISO_3200_A2_99.png}}
+{\footnotesize (e) TRD \\  (38.06dB/0.9186)      }
+\end{minipage}
+}
+\subfigure{
+\begin{minipage}[t]{0.2\textwidth}
+\centering
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/br_MLP_CC_Noisy_Nikon_D800_ISO_3200_A2_99.png}}
+{\footnotesize (f) MLP \\ (37.40dB/0.8976)   }
+\end{minipage}
+\begin{minipage}[t]{0.2\textwidth}
+\centering
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/br_NC_CC_Noisy_Nikon_D800_ISO_3200_A2_99.png}}
+{\footnotesize (g) Noise Clinic \\ (40.27dB/0.9394)    }
+\end{minipage}
+\begin{minipage}[t]{0.2\textwidth}
+\centering
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/br_NI_CC_Noisy_Nikon_D800_ISO_3200_A2_99.png}}
+{\footnotesize (h) Neat Image \\  (38.16dB/0.9008)  }
+\end{minipage}
+\begin{minipage}[t]{0.2\textwidth}
+\centering
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/br_DSCDL_CC_Noisy_Nikon_D800_ISO_3200_A2_99.png}}
+{\footnotesize (i) Ours \\  (38.22dB/0.9212)   }
+\end{minipage}
+\begin{minipage}[t]{0.2\textwidth}
+\centering
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/br_Mean_CC_Noisy_Nikon_D800_ISO_3200_A2_99.png}}
+{\footnotesize (j) Mean Image }
+\end{minipage}
+}
+\caption{Denoised images of the old image "$Nikon_D800_ISO_3200_A2_99$" by different methods. The images are better to be zoomed in on screen.}
+\label{fig2}
+\end{figure*}
+
+\begin{figure*}
+\centering
+\subfigure{
+\begin{minipage}[t]{0.2\textwidth}
+\centering
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/br_Noisy_CC_Noisy_Nikon_D800_ISO_6400_B2_113.png}}
+{\footnotesize (a) Noisy Image \\ (35.44dB/0.7469)  }
+\end{minipage}
+\begin{minipage}[t]{0.2\textwidth}
+\centering
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/br_BM3D_CC_Noisy_Nikon_D800_ISO_6400_B2_113.png}}
+{\footnotesize (b) BM3D  \\  (35.44dB/0.7472)  }
+\end{minipage}
+\begin{minipage}[t]{0.2\textwidth}
+\centering
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/br_WNNM_CC_Noisy_Nikon_D800_ISO_6400_B2_113.png}}
+{\footnotesize (c) WNNM \\  (35.45dB/0.7482) }
+\end{minipage}
+\begin{minipage}[t]{0.2\textwidth}
+\centering
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/br_CSF_CC_Noisy_Nikon_D800_ISO_6400_B2_113.png}}
+{\footnotesize (d) CSF \\  (37.82dB/0.8802) }
+\end{minipage}
+\begin{minipage}[t]{0.2\textwidth}
+\centering
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/br_TRD_CC_Noisy_Nikon_D800_ISO_6400_B2_113.png}}
+{\footnotesize (e) TRD \\  (37.84dB/0.8810)       }
+\end{minipage}
+}
+\subfigure{
+\begin{minipage}[t]{0.2\textwidth}
+\centering
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/br_MLP_CC_Noisy_Nikon_D800_ISO_6400_B2_113.png}}
+{\footnotesize (f) MLP \\ (38.46dB/0.8710)    }
+\end{minipage}
+\begin{minipage}[t]{0.2\textwidth}
+\centering
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/br_NC_CC_Noisy_Nikon_D800_ISO_6400_B2_113.png}}
+{\footnotesize (g) Noise Clinic \\ (39.80dB/0.9130)  }
+\end{minipage}
+\begin{minipage}[t]{0.2\textwidth}
+\centering
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/br_NI_CC_Noisy_Nikon_D800_ISO_6400_B2_113.png}}
+{\footnotesize (h) Neat Image \\  (36.65dB/0.8093)  }
+\end{minipage}
+\begin{minipage}[t]{0.2\textwidth}
+\centering
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/br_DSCDL_CC_Noisy_Nikon_D800_ISO_6400_B2_113.png}}
+{\footnotesize (i) Ours \\  (37.64dB/0.8743) }
+\end{minipage}
+\begin{minipage}[t]{0.2\textwidth}
+\centering
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/br_Mean_CC_Noisy_Nikon_D800_ISO_6400_B2_113.png}}
+{\footnotesize (j) Mean Image }
+\end{minipage}
+}
+\caption{Denoised images of the old image "$Nikon_D800_ISO_6400_B2_113$" by different methods. The images are better to be zoomed in on screen.}
+\label{fig2}
+\end{figure*}
 
 \section{Conclusion and Future Work}
 

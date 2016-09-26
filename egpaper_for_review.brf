@@ -11,7 +11,7 @@
 \backcite {em}{{1}{1}{section.1}}
 \backcite {Bishop}{{1}{1}{section.1}}
 \backcite {almapg}{{1}{1}{section.1}}
-\backcite {tsin2001statistical}{{2}{1}{section.1}}
+\backcite {tsin2001statistical}{{1}{1}{section.1}}
 \backcite {knn}{{2}{1.1}{subsection.1.1}}
 \backcite {yang2010image}{{2}{2.1}{subsection.2.1}}
 \backcite {wang2012semi}{{2}{2.1}{subsection.2.1}}
@@ -27,3 +27,15 @@
 \backcite {nlbayes}{{2}{2.2}{subsection.2.2}}
 \backcite {Zhu_2016_CVPR}{{2}{2.2}{subsection.2.2}}
 \backcite {Bishop}{{2}{2.2}{subsection.2.2}}
+\backcite {bm3d}{{5}{5.2}{subsection.5.2}}
+\backcite {wnnm}{{5}{5.2}{subsection.5.2}}
+\backcite {csf}{{5}{5.2}{subsection.5.2}}
+\backcite {chen2015learning}{{5}{5.2}{subsection.5.2}}
+\backcite {burger2012image}{{5}{5.2}{subsection.5.2}}
+\backcite {noiseclinic}{{5}{5.2}{subsection.5.2}}
+\backcite {crosschannel2016}{{5}{5.3}{subsection.5.3}}
+\backcite {crosschannel2016}{{5}{5.3}{subsection.5.3}}
+\backcite {crosschannel2016}{{5}{5.3}{subsection.5.3}}
+\backcite {crosschannel2016}{{7}{1}{table.1}}
+\backcite {crosschannel2016}{{7}{2}{table.2}}
+\backcite {crosschannel2016}{{9}{3}{table.3}}
