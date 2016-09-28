@@ -5,45 +5,45 @@ The style file: unsrt.bst
 Database file #1: egbib.bib
 Warning--I didn't find a database entry for "knn"
 Warning--I didn't find a database entry for "huber2011robust"
-You've used 28 entries,
+You've used 26 entries,
             1791 wiz_defined-function locations,
-            617 strings with 8096 characters,
-and the built_in function-call counts, 8228 in all, are:
-= -- 809
-> -- 311
+            602 strings with 7753 characters,
+and the built_in function-call counts, 7709 in all, are:
+= -- 761
+> -- 286
 < -- 11
-+ -- 114
-- -- 86
-* -- 574
-:= -- 1209
-add.period$ -- 84
-call.type$ -- 28
-change.case$ -- 27
++ -- 105
+- -- 79
+* -- 528
+:= -- 1126
+add.period$ -- 78
+call.type$ -- 26
+change.case$ -- 25
 chr.to.int$ -- 0
-cite$ -- 28
-duplicate$ -- 359
-empty$ -- 740
-format.name$ -- 86
-if$ -- 1869
+cite$ -- 26
+duplicate$ -- 341
+empty$ -- 692
+format.name$ -- 79
+if$ -- 1759
 int.to.chr$ -- 0
-int.to.str$ -- 28
-missing$ -- 29
-newline$ -- 143
-num.names$ -- 28
-pop$ -- 58
+int.to.str$ -- 26
+missing$ -- 27
+newline$ -- 133
+num.names$ -- 26
+pop$ -- 56
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 0
-skip$ -- 231
+skip$ -- 225
 stack$ -- 0
-substring$ -- 802
-swap$ -- 135
+substring$ -- 752
+swap$ -- 133
 text.length$ -- 11
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 0
 warning$ -- 0
-while$ -- 89
-width$ -- 30
-write$ -- 308
+while$ -- 83
+width$ -- 28
+write$ -- 286
 (There were 2 warnings)

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/W32TeX) (preloaded format=pdflatex 2015.9.12)  27 SEP 2016 22:28
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/W32TeX) (preloaded format=pdflatex 2015.9.12)  28 SEP 2016 11:21
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -402,11 +402,11 @@ LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <12> not available
 (Font)              Font shape `OT1/ptm/b/n' tried instead on input line 50.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/it' in size <10> not available
 (Font)              Font shape `OT1/ptm/b/it' tried instead on input line 51.
+
+Underfull \vbox (badness 6625) has occurred while \output is active []
+
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 62.
-
-Underfull \vbox (badness 1960) has occurred while \output is active []
-
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 65.
 LaTeX Font Info:    Try loading font information for OT1+phv on input line 65.
 
 (c:/Software/texlive/2015/texmf-dist/tex/latex/psnfss/ot1phv.fd
@@ -415,34 +415,31 @@ File: ot1phv.fd 2001/06/04 scalable font definitions for OT1/phv.
 
 
 ]
-LaTeX Font Info:    Try loading font information for OMS+ptm on input line 70.
+LaTeX Font Info:    Try loading font information for OMS+ptm on input line 72.
 
 (c:/Software/texlive/2015/texmf-dist/tex/latex/psnfss/omsptm.fd
 File: omsptm.fd 
 )
 LaTeX Font Info:    Font shape `OMS/ptm/m/n' in size <10> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 70.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 72.
 
 
-LaTeX Warning: Citation `knn' on page 2 undefined on input line 73.
+LaTeX Warning: Citation `knn' on page 2 undefined on input line 75.
 
 
-LaTeX Warning: Citation `huber2011robust' on page 2 undefined on input line 85.
+LaTeX Warning: Citation `huber2011robust' on page 2 undefined on input line 87.
 
 
 
-Overfull \hbox (23.15123pt too wide) in paragraph at lines 101--101
+Underfull \vbox (badness 7925) has occurred while \output is active []
+
+ [2]
+Overfull \hbox (23.15123pt too wide) in paragraph at lines 103--103
 [] 
  []
 
-
-Underfull \vbox (badness 1960) has occurred while \output is active []
-
- [2]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [3]
-Overfull \hbox (4.27312pt too wide) in paragraph at lines 411--411
+[3]
+Overfull \hbox (4.27312pt too wide) in paragraph at lines 413--413
 [] 
  []
 
@@ -451,7 +448,7 @@ File: images/br_Noisy_5dmark3_iso3200_1.png Graphic file (type png)
 
 <use images/br_Noisy_5dmark3_iso3200_1.png>
 Package pdftex.def Info: images/br_Noisy_5dmark3_iso3200_1.png used on input li
-ne 530.
+ne 532.
 (pdftex.def)             Requested size: 99.36972pt x 99.36316pt.
 
 <images/br_BM3D_5dmark3_iso3200_1.png, id=173, 513.92pt x 513.92pt>
@@ -459,7 +456,7 @@ File: images/br_BM3D_5dmark3_iso3200_1.png Graphic file (type png)
 
 <use images/br_BM3D_5dmark3_iso3200_1.png>
 Package pdftex.def Info: images/br_BM3D_5dmark3_iso3200_1.png used on input lin
-e 530.
+e 532.
 (pdftex.def)             Requested size: 99.36972pt x 99.36316pt.
 
 <images/br_WNNM_5dmark3_iso3200_1.png, id=174, 513.92pt x 513.92pt>
@@ -467,7 +464,7 @@ File: images/br_WNNM_5dmark3_iso3200_1.png Graphic file (type png)
 
 <use images/br_WNNM_5dmark3_iso3200_1.png>
 Package pdftex.def Info: images/br_WNNM_5dmark3_iso3200_1.png used on input lin
-e 530.
+e 532.
 (pdftex.def)             Requested size: 99.36972pt x 99.36316pt.
 
 <images/br_CSF_5dmark3_iso3200_1.png, id=175, 513.92pt x 513.92pt>
@@ -475,7 +472,7 @@ File: images/br_CSF_5dmark3_iso3200_1.png Graphic file (type png)
 
 <use images/br_CSF_5dmark3_iso3200_1.png>
 Package pdftex.def Info: images/br_CSF_5dmark3_iso3200_1.png used on input line
- 530.
+ 532.
 (pdftex.def)             Requested size: 99.36972pt x 99.36316pt.
 
 <images/br_TRD_5dmark3_iso3200_1.png, id=176, 513.92pt x 513.92pt>
@@ -483,7 +480,7 @@ File: images/br_TRD_5dmark3_iso3200_1.png Graphic file (type png)
 
 <use images/br_TRD_5dmark3_iso3200_1.png>
 Package pdftex.def Info: images/br_TRD_5dmark3_iso3200_1.png used on input line
- 530.
+ 532.
 (pdftex.def)             Requested size: 99.36972pt x 99.36316pt.
 
 <images/br_MLP_5dmark3_iso3200_1.png, id=177, 513.92pt x 513.92pt>
@@ -491,7 +488,7 @@ File: images/br_MLP_5dmark3_iso3200_1.png Graphic file (type png)
 
 <use images/br_MLP_5dmark3_iso3200_1.png>
 Package pdftex.def Info: images/br_MLP_5dmark3_iso3200_1.png used on input line
- 557.
+ 559.
 (pdftex.def)             Requested size: 99.36972pt x 99.36316pt.
 
 <images/br_NC_5dmark3_iso3200_1.png, id=178, 513.92pt x 513.92pt>
@@ -499,7 +496,7 @@ File: images/br_NC_5dmark3_iso3200_1.png Graphic file (type png)
 
 <use images/br_NC_5dmark3_iso3200_1.png>
 Package pdftex.def Info: images/br_NC_5dmark3_iso3200_1.png used on input line 
-557.
+559.
 (pdftex.def)             Requested size: 99.36972pt x 99.36316pt.
 
 <images/br_NI_5dmark3_iso3200_1.png, id=179, 513.92pt x 513.92pt>
@@ -507,7 +504,7 @@ File: images/br_NI_5dmark3_iso3200_1.png Graphic file (type png)
 
 <use images/br_NI_5dmark3_iso3200_1.png>
 Package pdftex.def Info: images/br_NI_5dmark3_iso3200_1.png used on input line 
-557.
+559.
 (pdftex.def)             Requested size: 99.36972pt x 99.36316pt.
 
 <images/br_DSCDL_5dmark3_iso3200_1.png, id=180, 513.92pt x 513.92pt>
@@ -515,7 +512,7 @@ File: images/br_DSCDL_5dmark3_iso3200_1.png Graphic file (type png)
 
 <use images/br_DSCDL_5dmark3_iso3200_1.png>
 Package pdftex.def Info: images/br_DSCDL_5dmark3_iso3200_1.png used on input li
-ne 557.
+ne 559.
 (pdftex.def)             Requested size: 99.36972pt x 99.36316pt.
 
 <images/br_Mean_5dmark3_iso3200_1.png, id=181, 513.92pt x 513.92pt>
@@ -523,15 +520,15 @@ File: images/br_Mean_5dmark3_iso3200_1.png Graphic file (type png)
 
 <use images/br_Mean_5dmark3_iso3200_1.png>
 Package pdftex.def Info: images/br_Mean_5dmark3_iso3200_1.png used on input lin
-e 557.
+e 559.
 (pdftex.def)             Requested size: 99.36972pt x 99.36316pt.
 
-Overfull \hbox (14.99236pt too wide) in paragraph at lines 530--558
+Overfull \hbox (14.99236pt too wide) in paragraph at lines 532--560
  [][] 
  []
 
 
-Overfull \hbox (14.99236pt too wide) in paragraph at lines 530--558
+Overfull \hbox (14.99236pt too wide) in paragraph at lines 532--560
  [][] 
  []
 
@@ -540,7 +537,7 @@ File: images/br_Noisy_5dmark3_iso3200_2.png Graphic file (type png)
 
 <use images/br_Noisy_5dmark3_iso3200_2.png>
 Package pdftex.def Info: images/br_Noisy_5dmark3_iso3200_2.png used on input li
-ne 590.
+ne 592.
 (pdftex.def)             Requested size: 99.36972pt x 99.36316pt.
 
 <images/br_BM3D_5dmark3_iso3200_2.png, id=183, 513.92pt x 513.92pt>
@@ -548,7 +545,7 @@ File: images/br_BM3D_5dmark3_iso3200_2.png Graphic file (type png)
 
 <use images/br_BM3D_5dmark3_iso3200_2.png>
 Package pdftex.def Info: images/br_BM3D_5dmark3_iso3200_2.png used on input lin
-e 590.
+e 592.
 (pdftex.def)             Requested size: 99.36972pt x 99.36316pt.
 
 <images/br_WNNM_5dmark3_iso3200_2.png, id=184, 513.92pt x 513.92pt>
@@ -556,7 +553,7 @@ File: images/br_WNNM_5dmark3_iso3200_2.png Graphic file (type png)
 
 <use images/br_WNNM_5dmark3_iso3200_2.png>
 Package pdftex.def Info: images/br_WNNM_5dmark3_iso3200_2.png used on input lin
-e 590.
+e 592.
 (pdftex.def)             Requested size: 99.36972pt x 99.36316pt.
 
 <images/br_CSF_5dmark3_iso3200_2.png, id=185, 513.92pt x 513.92pt>
@@ -564,7 +561,7 @@ File: images/br_CSF_5dmark3_iso3200_2.png Graphic file (type png)
 
 <use images/br_CSF_5dmark3_iso3200_2.png>
 Package pdftex.def Info: images/br_CSF_5dmark3_iso3200_2.png used on input line
- 590.
+ 592.
 (pdftex.def)             Requested size: 99.36972pt x 99.36316pt.
 
 <images/br_TRD_5dmark3_iso3200_2.png, id=186, 513.92pt x 513.92pt>
@@ -572,7 +569,7 @@ File: images/br_TRD_5dmark3_iso3200_2.png Graphic file (type png)
 
 <use images/br_TRD_5dmark3_iso3200_2.png>
 Package pdftex.def Info: images/br_TRD_5dmark3_iso3200_2.png used on input line
- 590.
+ 592.
 (pdftex.def)             Requested size: 99.36972pt x 99.36316pt.
 
 <images/br_MLP_5dmark3_iso3200_2.png, id=187, 513.92pt x 513.92pt>
@@ -580,7 +577,7 @@ File: images/br_MLP_5dmark3_iso3200_2.png Graphic file (type png)
 
 <use images/br_MLP_5dmark3_iso3200_2.png>
 Package pdftex.def Info: images/br_MLP_5dmark3_iso3200_2.png used on input line
- 617.
+ 619.
 (pdftex.def)             Requested size: 99.36972pt x 99.36316pt.
 
 <images/br_NC_5dmark3_iso3200_2.png, id=188, 513.92pt x 513.92pt>
@@ -588,7 +585,7 @@ File: images/br_NC_5dmark3_iso3200_2.png Graphic file (type png)
 
 <use images/br_NC_5dmark3_iso3200_2.png>
 Package pdftex.def Info: images/br_NC_5dmark3_iso3200_2.png used on input line 
-617.
+619.
 (pdftex.def)             Requested size: 99.36972pt x 99.36316pt.
 
 <images/br_NI_5dmark3_iso3200_2.png, id=189, 513.92pt x 513.92pt>
@@ -596,7 +593,7 @@ File: images/br_NI_5dmark3_iso3200_2.png Graphic file (type png)
 
 <use images/br_NI_5dmark3_iso3200_2.png>
 Package pdftex.def Info: images/br_NI_5dmark3_iso3200_2.png used on input line 
-617.
+619.
 (pdftex.def)             Requested size: 99.36972pt x 99.36316pt.
 
 <images/br_DSCDL_5dmark3_iso3200_2.png, id=190, 513.92pt x 513.92pt>
@@ -604,7 +601,7 @@ File: images/br_DSCDL_5dmark3_iso3200_2.png Graphic file (type png)
 
 <use images/br_DSCDL_5dmark3_iso3200_2.png>
 Package pdftex.def Info: images/br_DSCDL_5dmark3_iso3200_2.png used on input li
-ne 617.
+ne 619.
 (pdftex.def)             Requested size: 99.36972pt x 99.36316pt.
 
 <images/br_Mean_5dmark3_iso3200_2.png, id=191, 513.92pt x 513.92pt>
@@ -612,15 +609,15 @@ File: images/br_Mean_5dmark3_iso3200_2.png Graphic file (type png)
 
 <use images/br_Mean_5dmark3_iso3200_2.png>
 Package pdftex.def Info: images/br_Mean_5dmark3_iso3200_2.png used on input lin
-e 617.
+e 619.
 (pdftex.def)             Requested size: 99.36972pt x 99.36316pt.
 
-Overfull \hbox (14.99236pt too wide) in paragraph at lines 590--618
+Overfull \hbox (14.99236pt too wide) in paragraph at lines 592--620
  [][] 
  []
 
 
-Overfull \hbox (14.99236pt too wide) in paragraph at lines 590--618
+Overfull \hbox (14.99236pt too wide) in paragraph at lines 592--620
  [][] 
  []
 
@@ -629,7 +626,7 @@ File: images/br_Noisy_5dmark3_iso3200_3.png Graphic file (type png)
 
 <use images/br_Noisy_5dmark3_iso3200_3.png>
 Package pdftex.def Info: images/br_Noisy_5dmark3_iso3200_3.png used on input li
-ne 651.
+ne 653.
 (pdftex.def)             Requested size: 99.36972pt x 99.36316pt.
 
 <images/br_BM3D_5dmark3_iso3200_3.png, id=193, 513.92pt x 513.92pt>
@@ -637,7 +634,7 @@ File: images/br_BM3D_5dmark3_iso3200_3.png Graphic file (type png)
 
 <use images/br_BM3D_5dmark3_iso3200_3.png>
 Package pdftex.def Info: images/br_BM3D_5dmark3_iso3200_3.png used on input lin
-e 651.
+e 653.
 (pdftex.def)             Requested size: 99.36972pt x 99.36316pt.
 
 <images/br_WNNM_5dmark3_iso3200_3.png, id=194, 513.92pt x 513.92pt>
@@ -645,7 +642,7 @@ File: images/br_WNNM_5dmark3_iso3200_3.png Graphic file (type png)
 
 <use images/br_WNNM_5dmark3_iso3200_3.png>
 Package pdftex.def Info: images/br_WNNM_5dmark3_iso3200_3.png used on input lin
-e 651.
+e 653.
 (pdftex.def)             Requested size: 99.36972pt x 99.36316pt.
 
 <images/br_CSF_5dmark3_iso3200_3.png, id=195, 513.92pt x 513.92pt>
@@ -653,7 +650,7 @@ File: images/br_CSF_5dmark3_iso3200_3.png Graphic file (type png)
 
 <use images/br_CSF_5dmark3_iso3200_3.png>
 Package pdftex.def Info: images/br_CSF_5dmark3_iso3200_3.png used on input line
- 651.
+ 653.
 (pdftex.def)             Requested size: 99.36972pt x 99.36316pt.
 
 <images/br_TRD_5dmark3_iso3200_3.png, id=196, 513.92pt x 513.92pt>
@@ -661,7 +658,7 @@ File: images/br_TRD_5dmark3_iso3200_3.png Graphic file (type png)
 
 <use images/br_TRD_5dmark3_iso3200_3.png>
 Package pdftex.def Info: images/br_TRD_5dmark3_iso3200_3.png used on input line
- 651.
+ 653.
 (pdftex.def)             Requested size: 99.36972pt x 99.36316pt.
 
 <images/br_MLP_5dmark3_iso3200_3.png, id=197, 513.92pt x 513.92pt>
@@ -669,7 +666,7 @@ File: images/br_MLP_5dmark3_iso3200_3.png Graphic file (type png)
 
 <use images/br_MLP_5dmark3_iso3200_3.png>
 Package pdftex.def Info: images/br_MLP_5dmark3_iso3200_3.png used on input line
- 678.
+ 680.
 (pdftex.def)             Requested size: 99.36972pt x 99.36316pt.
 
 <images/br_NC_5dmark3_iso3200_3.png, id=198, 513.92pt x 513.92pt>
@@ -677,7 +674,7 @@ File: images/br_NC_5dmark3_iso3200_3.png Graphic file (type png)
 
 <use images/br_NC_5dmark3_iso3200_3.png>
 Package pdftex.def Info: images/br_NC_5dmark3_iso3200_3.png used on input line 
-678.
+680.
 (pdftex.def)             Requested size: 99.36972pt x 99.36316pt.
 
 <images/br_NI_5dmark3_iso3200_3.png, id=199, 513.92pt x 513.92pt>
@@ -685,7 +682,7 @@ File: images/br_NI_5dmark3_iso3200_3.png Graphic file (type png)
 
 <use images/br_NI_5dmark3_iso3200_3.png>
 Package pdftex.def Info: images/br_NI_5dmark3_iso3200_3.png used on input line 
-678.
+680.
 (pdftex.def)             Requested size: 99.36972pt x 99.36316pt.
 
 <images/br_DSCDL_5dmark3_iso3200_3.png, id=200, 513.92pt x 513.92pt>
@@ -693,7 +690,7 @@ File: images/br_DSCDL_5dmark3_iso3200_3.png Graphic file (type png)
 
 <use images/br_DSCDL_5dmark3_iso3200_3.png>
 Package pdftex.def Info: images/br_DSCDL_5dmark3_iso3200_3.png used on input li
-ne 678.
+ne 680.
 (pdftex.def)             Requested size: 99.36972pt x 99.36316pt.
 
 <images/br_Mean_5dmark3_iso3200_3.png, id=201, 513.92pt x 513.92pt>
@@ -701,15 +698,15 @@ File: images/br_Mean_5dmark3_iso3200_3.png Graphic file (type png)
 
 <use images/br_Mean_5dmark3_iso3200_3.png>
 Package pdftex.def Info: images/br_Mean_5dmark3_iso3200_3.png used on input lin
-e 678.
+e 680.
 (pdftex.def)             Requested size: 99.36972pt x 99.36316pt.
 
-Overfull \hbox (14.99236pt too wide) in paragraph at lines 651--679
+Overfull \hbox (14.99236pt too wide) in paragraph at lines 653--681
  [][] 
  []
 
 
-Overfull \hbox (14.99236pt too wide) in paragraph at lines 651--679
+Overfull \hbox (14.99236pt too wide) in paragraph at lines 653--681
  [][] 
  []
 
@@ -718,9 +715,9 @@ Overfull \hbox (14.99236pt too wide) in paragraph at lines 651--679
 \openout3 = `egpaper_for_review.brf'.
 
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <9> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 149.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 146.
  [6])
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 715.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 717.
  [7
 
 ] [8 <./images/br_Noisy_5dmark3_iso3200_1.png (PNG copy)> <./images/br_BM3D_5dm
@@ -743,12 +740,12 @@ PNG copy)> <./images/br_CSF_5dmark3_iso3200_3.png (PNG copy)> <./images/br_TRD_
 opy)> <./images/br_NC_5dmark3_iso3200_3.png (PNG copy)> <./images/br_NI_5dmark3
 _iso3200_3.png (PNG copy)> <./images/br_DSCDL_5dmark3_iso3200_3.png (PNG copy)>
  <./images/br_Mean_5dmark3_iso3200_3.png (PNG copy)>]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 715.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 717.
  (./egpaper_for_review.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 715.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 715.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 717.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 717.
 Package rerunfilecheck Info: File `egpaper_for_review.brf' has not changed.
-(rerunfilecheck)             Checksum: 303B54C44B7BEA73A17FA9BCF2B20847;2170.
+(rerunfilecheck)             Checksum: 3CBBC04993A495D53BE37E00AB464DB4;2228.
 
 
 LaTeX Warning: There were undefined references.
@@ -756,16 +753,16 @@ LaTeX Warning: There were undefined references.
 
 LaTeX Warning: There were multiply-defined labels.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 715.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 717.
  ) 
 Here is how much of TeX's memory you used:
- 7004 strings out of 493091
- 104512 string characters out of 6134517
- 213370 words of memory out of 5000000
- 10248 multiletter control sequences out of 15000+600000
+ 6994 strings out of 493091
+ 104364 string characters out of 6134517
+ 213193 words of memory out of 5000000
+ 10240 multiletter control sequences out of 15000+600000
  39349 words of font info for 85 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 36i,17n,27p,1842b,466s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 36i,17n,29p,1842b,466s stack positions out of 5000i,500n,10000p,200000b,80000s
 {c:/Software/texlive/2015/texmf-dist/fonts/enc/dvips/base/8r.enc}<c:/Software
 /texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb><c:/Software
 /texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx7.pfb><c:/Software/
@@ -790,10 +787,10 @@ t/fonts/type1/urw/times/utmb8a.pfb><c:/Software/texlive/2015/texmf-dist/fonts/t
 ype1/urw/times/utmbi8a.pfb><c:/Software/texlive/2015/texmf-dist/fonts/type1/urw
 /times/utmr8a.pfb><c:/Software/texlive/2015/texmf-dist/fonts/type1/urw/times/ut
 mri8a.pfb>
-Output written on egpaper_for_review.pdf (9 pages, 8841102 bytes).
+Output written on egpaper_for_review.pdf (9 pages, 8840858 bytes).
 PDF statistics:
- 378 PDF objects out of 1000 (max. 8388607)
- 309 compressed objects within 4 object streams
- 91 named destinations out of 1000 (max. 500000)
+ 375 PDF objects out of 1000 (max. 8388607)
+ 306 compressed objects within 4 object streams
+ 89 named destinations out of 1000 (max. 500000)
  151 words of extra memory for PDF output out of 10000 (max. 10000000)
 

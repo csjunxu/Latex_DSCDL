@@ -1,5 +1,5 @@
 \backcite {healey1994radiometric}{{1}{(document)}{Doc-Start}}
-\backcite {rudin1992nonlinear,nlm,foe,ksvd,bm3d,lssc,epll,pgpd,wnnm,csf,chen2015learning,burger2012image}{{1}{1}{section.1}}
+\backcite {nlm,foe,ksvd,bm3d,lssc,epll,burger2012image,wnnm,csf,pgpd,chen2015learning}{{1}{1}{section.1}}
 \backcite {fullyblind,rabie2005robust,Liu2008,almapg,noiseclinic,Zhu_2016_CVPR,crosschannel2016}{{1}{1}{section.1}}
 \backcite {fullyblind,rabie2005robust,Liu2008,noiseclinic,crosschannel2016}{{1}{1}{section.1}}
 \backcite {almapg}{{1}{1}{section.1}}
@@ -10,8 +10,10 @@
 \backcite {Zhu_2016_CVPR}{{1}{1}{section.1}}
 \backcite {em}{{1}{1}{section.1}}
 \backcite {Bishop}{{1}{1}{section.1}}
-\backcite {healey1994radiometric}{{1}{1}{section.1}}
-\backcite {tsin2001statistical}{{1}{1}{section.1}}
+\backcite {burger2012image}{{1}{1}{section.1}}
+\backcite {csf}{{1}{1}{section.1}}
+\backcite {chen2015learning}{{1}{1}{section.1}}
+\backcite {tsin2001statistical}{{2}{1}{section.1}}
 \backcite {knn}{{2}{1.1}{subsection.1.1}}
 \backcite {yang2010image}{{2}{2.1}{subsection.2.1}}
 \backcite {wang2012semi}{{2}{2.1}{subsection.2.1}}

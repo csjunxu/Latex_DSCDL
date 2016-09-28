@@ -6,16 +6,6 @@ Glenn~E Healey and Raghava Kondepudy.
 \newblock {\em IEEE Transactions on Pattern Analysis and Machine Intelligence},
   16(3):267--276, 1994.
 
-\bibitem{bsds}
-P.~Arbelaez, M.~Maire, C.~Fowlkes, and J.~Malik.
-\newblock Contour detection and hierarchical image segmentation.
-\newblock {\em IEEE Trans. Pattern Anal. Mach. Intell.}, 33(5):898--916, 2011.
-
-\bibitem{rudin1992nonlinear}
-L.~I. Rudin, S.~Osher, and E.~Fatemi.
-\newblock Nonlinear total variation based noise removal algorithms.
-\newblock {\em Physica D: Nonlinear Phenomena}, 60(1):259--268, 1992.
-
 \bibitem{nlm}
 A.~Buades, B.~Coll, and J.~M. Morel.
 \newblock A non-local algorithm for image denoising.
@@ -50,12 +40,11 @@ D.~Zoran and Y.~Weiss.
   restoration.
 \newblock {\em ICCV}, pages 479--486, 2011.
 
-\bibitem{pgpd}
-J.~Xu, L.~Zhang, W.~Zuo, D.~Zhang, and X.~Feng.
-\newblock Patch group based nonlocal self-similarity prior learning for image
-  denoising.
-\newblock {\em 2015 IEEE International Conference on Computer Vision (ICCV)},
-  pages 244--252, 2015.
+\bibitem{burger2012image}
+Harold~C Burger, Christian~J Schuler, and Stefan Harmeling.
+\newblock Image denoising: Can plain neural networks compete with bm3d?
+\newblock {\em Computer Vision and Pattern Recognition (CVPR), 2012 IEEE
+  Conference on}, pages 2392--2399, 2012.
 
 \bibitem{wnnm}
 S.~Gu, L.~Zhang, W.~Zuo, and X.~Feng.
@@ -69,24 +58,19 @@ U.~Schmidt and S.~Roth.
 \newblock {\em Computer Vision and Pattern Recognition (CVPR), 2014 IEEE
   Conference on}, pages 2774--2781, June 2014.
 
+\bibitem{pgpd}
+J.~Xu, L.~Zhang, W.~Zuo, D.~Zhang, and X.~Feng.
+\newblock Patch group based nonlocal self-similarity prior learning for image
+  denoising.
+\newblock {\em 2015 IEEE International Conference on Computer Vision (ICCV)},
+  pages 244--252, 2015.
+
 \bibitem{chen2015learning}
 Yunjin Chen, Wei Yu, and Thomas Pock.
 \newblock On learning optimized reaction diffusion processes for effective
   image restoration.
 \newblock {\em Proceedings of the IEEE Conference on Computer Vision and
   Pattern Recognition}, pages 5261--5269, 2015.
-
-\bibitem{burger2012image}
-Harold~C Burger, Christian~J Schuler, and Stefan Harmeling.
-\newblock Image denoising: Can plain neural networks compete with bm3d?
-\newblock {\em Computer Vision and Pattern Recognition (CVPR), 2012 IEEE
-  Conference on}, pages 2392--2399, 2012.
-
-\bibitem{noiseclinic}
-M.~Lebrun, M.~Colom, and J.-M. Morel.
-\newblock Multiscale image blind denoising.
-\newblock {\em Image Processing, IEEE Transactions on}, 24(10):3149--3161,
-  2015.
 
 \bibitem{fullyblind}
 J.~Portilla.
@@ -112,6 +96,12 @@ Zheng Gong, Zuowei Shen, and Kim-Chuan Toh.
 \newblock Image restoration with mixed or unknown noises.
 \newblock {\em Multiscale Modeling \& Simulation}, 12(2):458--487, 2014.
 
+\bibitem{noiseclinic}
+M.~Lebrun, M.~Colom, and J.-M. Morel.
+\newblock Multiscale image blind denoising.
+\newblock {\em Image Processing, IEEE Transactions on}, 24(10):3149--3161,
+  2015.
+
 \bibitem{Zhu_2016_CVPR}
 Fengyuan Zhu, Guangyong Chen, and Pheng-Ann Heng.
 \newblock From noise modeling to blind image denoising.
@@ -125,16 +115,16 @@ Seonghyeon Nam, Youngbae Hwang, Yasuyuki Matsushita, and Seon~Joo Kim.
 \newblock {\em Proc. Computer Vision and Pattern Recognition (CVPR)}, pages
   1683--1691, 2016.
 
-\bibitem{Bishop}
-C.~M. Bishop.
-\newblock {\em Pattern recognition and machine learning}.
-\newblock New York: Springer, 2006.
-
 \bibitem{em}
 A.~P. Dempster, N.~M. Laird, and D.~B. Rubin.
 \newblock Maximum likelihood from incomplete data via the {EM} algorithm.
 \newblock {\em Journal of the Royal Statistical Society. Series B
   (methodological)}, pages 1--38, 1977.
+
+\bibitem{Bishop}
+C.~M. Bishop.
+\newblock {\em Pattern recognition and machine learning}.
+\newblock New York: Springer, 2006.
 
 \bibitem{tsin2001statistical}
 Yanghai Tsin, Visvanathan Ramesh, and Takeo Kanade.
