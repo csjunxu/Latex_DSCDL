@@ -115,16 +115,17 @@ Seonghyeon Nam, Youngbae Hwang, Yasuyuki Matsushita, and Seon~Joo Kim.
 \newblock {\em Proc. Computer Vision and Pattern Recognition (CVPR)}, pages
   1683--1691, 2016.
 
-\bibitem{em}
-A.~P. Dempster, N.~M. Laird, and D.~B. Rubin.
-\newblock Maximum likelihood from incomplete data via the {EM} algorithm.
-\newblock {\em Journal of the Royal Statistical Society. Series B
-  (methodological)}, pages 1--38, 1977.
-
 \bibitem{Bishop}
 C.~M. Bishop.
 \newblock {\em Pattern recognition and machine learning}.
 \newblock New York: Springer, 2006.
+
+\bibitem{NewInCamera}
+S.~J. Kim, H.~T. Lin, Z.~Lu, S.~Süsstrunk, S.~Lin, and M.~S. Brown.
+\newblock A new in-camera imaging model for color computer vision and its
+  application.
+\newblock {\em IEEE Transactions on Pattern Analysis and Machine Intelligence},
+  34(12):2289--2302, Dec 2012.
 
 \bibitem{tsin2001statistical}
 Yanghai Tsin, Visvanathan Ramesh, and Takeo Kanade.
